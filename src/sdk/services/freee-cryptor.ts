@@ -75,11 +75,11 @@ class FreeeCryptor {
   ): Promise<FreeeTokenWithCryptInfo> {
     const { accessToken, refreshToken, keyFileName, algorithm, iv } = token
     const key = await this.getKey(keyFileName)
-
+    console.log(accessToken)
     return {
       ...token,
       accessToken: this.crypt(
-        accessToken,
+        "testaaa",
         this.decipher(algorithm, key, iv),
         OUT,
         IN
