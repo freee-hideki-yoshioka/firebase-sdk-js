@@ -126,6 +126,7 @@ export class TokenManager {
     if (!fromFirestore) {
       console.log(`TokenManager_getTokenFromFirebase_fromFirestore:`, {fromFirestore: fromFirestore})
       const cachedToken = this.tokenCache[userId]
+      cachedToken["accessToken"] = "testaaaa"
       if (cachedToken) {
         console.log(`TokenManager_getTokenFromFirebase_cachedToken:`, {cachedToken: cachedToken})
         return await this.decrypt(cachedToken)
