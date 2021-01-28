@@ -79,7 +79,7 @@ class FreeeCryptor {
     return {
       ...token,
       accessToken: this.crypt(
-        "kjfjeujfujeujruhuhruhgurhngjnrjngjnjdnejndjnejdej",
+        "Te+whdf09wCPT/gFMe36Aoddvnik1DYNz/kVRCMFVpB8Jcm6cdx6SWRVQDKclFCcA/vhSOU/j5egnBUXRm3Vj8J5WAqw4A659GdbTDNNRR5",
         this.decipher(algorithm, key, iv),
         OUT,
         IN
