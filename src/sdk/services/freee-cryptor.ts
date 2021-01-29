@@ -19,10 +19,14 @@ export interface FreeeTokenWithCryptInfo extends FreeeToken {
 class FreeeCryptor {
   private bucket: Bucket
   private keyCache: { [key: string]: Buffer }
+  private accessToken: string
+  private refreshToken: string
 
   constructor(bucket: Bucket) {
     this.bucket = bucket
     this.keyCache = {}
+    this.accessToken = ""
+    this.refreshToken = ""
   }
 
   /**
@@ -47,8 +51,10 @@ class FreeeCryptor {
     const keyFileName = format(new Date(), 'yyyyMM')
     const key = await this.getKey(keyFileName)
     const iv = crypto.randomBytes(IV_LENGTH)
+    this.accessToken =  accessToken
+    this.refreshToken =  refreshToken
+
     console.log(`FreeeCryptor_encrypt_info:`, {
-      token: token,
       keyFileName: keyFileName,
       key: key,
       iv: iv
@@ -82,21 +88,31 @@ class FreeeCryptor {
     const { accessToken, refreshToken, keyFileName, algorithm, iv } = token
     const key = await this.getKey(keyFileName)
     console.log(`FreeeCryptor_decrypt_getKey:`, {decryptKey: key})
-    console.log(accessToken)
+
+    const decryptAccessToken = this.crypt(
+      accessToken,
+      this.decipher(algorithm, key, iv),
+      OUT,
+      IN
+    )
+    if (this.accessToken === decryptAccessToken) {
+      console.log("access token decrypt success")
+    }
+
+    const decryptRefreshToken = this.crypt(
+      refreshToken,
+      this.decipher(algorithm, key, iv),
+      OUT,
+      IN
+    )
+    if (this.refreshToken === decryptRefreshToken) {
+      console.log("refreshToken decrypt success")
+    }
+
     return {
       ...token,
-      accessToken: this.crypt(
-        "aaaaare",
-        this.decipher(algorithm, key, iv),
-        OUT,
-        IN
-      ),
-      refreshToken: this.crypt(
-        refreshToken,
-        this.decipher(algorithm, key, iv),
-        OUT,
-        IN
-      )
+      accessToken: decryptAccessToken,
+      refreshToken: decryptRefreshToken
     }
   }
 
