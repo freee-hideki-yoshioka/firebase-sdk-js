@@ -95,6 +95,11 @@ class FreeeCryptor {
       OUT,
       IN
     )
+    console.log({
+      accessToken:this.accessToken,
+      decryptAccessToken: decryptAccessToken
+    })
+    console.log(decryptAccessToken)
     if (this.accessToken === decryptAccessToken) {
       console.log("access token decrypt success")
     }
@@ -105,6 +110,10 @@ class FreeeCryptor {
       OUT,
       IN
     )
+    console.log({
+      refreshToken:this.refreshToken,
+      decryptRefreshToken: decryptRefreshToken
+    })
     if (this.refreshToken === decryptRefreshToken) {
       console.log("refreshToken decrypt success")
     }
