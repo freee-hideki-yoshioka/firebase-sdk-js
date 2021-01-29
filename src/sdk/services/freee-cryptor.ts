@@ -43,6 +43,8 @@ class FreeeCryptor {
    * @return {Promise<Object>} - encrypted freee token object
    */
   async encrypt(token: FreeeToken): Promise<FreeeTokenWithCryptInfo> {
+    console.log("encryptencryptencryptencrypt")
+    console.log(token)
     const { accessToken, refreshToken } = token
     const keyFileName = format(new Date(), 'yyyyMM')
     const key = await this.getKey(keyFileName)
