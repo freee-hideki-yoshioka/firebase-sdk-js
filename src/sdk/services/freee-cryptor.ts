@@ -78,11 +78,11 @@ class FreeeCryptor {
     const { accessToken, refreshToken, keyFileName, algorithm, iv } = token
     const key = await this.getKey(keyFileName)
     console.log("FreeeCryptor_decrypt_getKey")
-    console.log(accessToken)
+  
     return {
       ...token,
       accessToken: this.crypt(
-        "areuiuiure",
+        accessToken,
         this.decipher(algorithm, key, iv),
         OUT,
         IN

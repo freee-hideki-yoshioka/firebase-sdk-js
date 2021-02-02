@@ -122,6 +122,8 @@ export class TokenManager {
   }
 
   private async getTokenFromFirebase(userId: string, fromFirestore?: boolean) {
+    console.log(this.tokenCache[userId])
+
     if (!fromFirestore) {
       console.log(`TokenManager_getTokenFromFirebase_fromFirestore:`, {fromFirestore: fromFirestore})
       const cachedToken = this.tokenCache[userId]
