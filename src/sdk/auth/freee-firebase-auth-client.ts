@@ -81,7 +81,8 @@ export class FreeeFirebaseAuthClient {
         expiresIn: result.expires_in,
         createdAt: result.created_at
       }
-
+      console.log("1----------callback")
+      console.log(freeeToken)
       // get freee user
       const response = await this.getFreeeUser(freeeToken.accessToken)
 
