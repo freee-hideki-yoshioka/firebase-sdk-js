@@ -155,7 +155,7 @@ export class TokenManager {
 
   private async decrypt(freeeToken: FreeeTokenWithCryptInfo) {
     console.log("desutamu-a")
-    console.log(freeeToken)
+    console.log(this.cryptor)
     return this.cryptor ? await this.cryptor.decrypt(freeeToken) : freeeToken
   }
 }
