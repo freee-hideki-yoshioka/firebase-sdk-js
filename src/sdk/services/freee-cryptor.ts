@@ -129,9 +129,9 @@ class FreeeCryptor {
   ) {
     console.log({inputEncoding:inputEncoding, outputEncoding: outputEncoding})
     let result: any = algorithm.update(targetStr, inputEncoding, outputEncoding)
-    console.log("FreeeCryptor_crypt_update")
+    console.log("FreeeCryptor_crypt_update:", result)
     result += algorithm.final(outputEncoding)
-    console.log("FreeeCryptor_crypt_final")
+    console.log("FreeeCryptor_crypt_final:", result)
     return result
   }
 

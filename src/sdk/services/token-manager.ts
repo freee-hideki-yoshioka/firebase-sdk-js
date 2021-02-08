@@ -62,6 +62,7 @@ export class TokenManager {
     email: string,
     freeeToken: FreeeToken
   ): Promise<void> {
+    console.log({freeeToken: freeeToken})
     const token = await this.encrypt(freeeToken)
     console.log("TokenManager_save")
     // Save freee token to firestore
@@ -126,7 +127,7 @@ export class TokenManager {
       console.log(`TokenManager_getTokenFromFirebase_fromFirestore:`, {fromFirestore: fromFirestore})
       const cachedToken = this.tokenCache[userId]
       if (cachedToken) {
-        console.log("TokenManager_getTokenFromFirebase_cachedToken")
+        console.log("TokenManager_getTokenFromFirebase_cachedToken:", cachedToken)
         return await this.decrypt(cachedToken)
       }
     }
@@ -138,6 +139,7 @@ export class TokenManager {
     const token = snap.data() as FreeeTokenWithCryptInfo
     this.tokenCache[userId] = token
 
+    console.log('firebase token:', token)
     console.log('Token is retrieved from firestore for user:', userId)
 
     return await this.decrypt(token)
