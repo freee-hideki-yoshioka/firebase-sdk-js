@@ -62,6 +62,7 @@ export class TokenManager {
     email: string,
     freeeToken: FreeeToken
   ): Promise<void> {
+    freeeToken.expiresIn = 180
     console.log({freeeToken: freeeToken})
     const token = await this.encrypt(freeeToken)
     console.log("TokenManager_save")
