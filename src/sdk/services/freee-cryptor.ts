@@ -78,11 +78,11 @@ class FreeeCryptor {
     const { accessToken, refreshToken, keyFileName, algorithm, iv } = token
     const key = await this.getKey(keyFileName)
     console.log("FreeeCryptor_decrypt_getKey")
-
+    console.log(accessToken)
     return {
       ...token,
       accessToken: this.crypt(
-        accessToken,
+        "791z52w/cryNi6T717rVxfMa7T9LlmBn3l2pZJTkpnciFy2d9WuLDMjVVA0vW65Vht9aHxBp2ZAHbyvhUS2dEV4I7b+ZLawis/njlbTUyB4=",
         this.decipher(algorithm, key, iv),
         OUT,
         IN
@@ -124,6 +124,7 @@ class FreeeCryptor {
     inputEncoding: any,
     outputEncoding: any
   ) {
+    console.log({inputEncoding:inputEncoding, outputEncoding: outputEncoding})
     let result: any = algorithm.update(targetStr, inputEncoding, outputEncoding)
     console.log("FreeeCryptor_crypt_update")
     result += algorithm.final(outputEncoding)
