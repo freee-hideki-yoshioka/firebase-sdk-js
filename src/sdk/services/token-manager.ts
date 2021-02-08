@@ -15,12 +15,14 @@ export class TokenManager {
     this.oauth2 = oauth2
     this.cryptor = cryptor
     this.tokenCache = {}
+    console.log({constructor_tokenCache: this.tokenCache})
   }
 
   /**
    * Get token with handling refresh token
    */
   async get(userId: string): Promise<string> {
+    console.log({get_tokenCache: this.tokenCache})
     let freeeToken: any;
 
     try {
