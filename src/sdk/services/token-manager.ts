@@ -88,6 +88,7 @@ export class TokenManager {
     freeeToken: FreeeTokenWithCryptInfo,
     userId: string
   ) {
+    console.log("1----------------refreshToken")
     // refresh
     const tokenObject = {
       access_token: freeeToken.accessToken,
