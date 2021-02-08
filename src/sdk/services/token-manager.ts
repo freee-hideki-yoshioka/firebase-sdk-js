@@ -102,7 +102,7 @@ export class TokenManager {
     const token = (await this.encrypt({
       accessToken: newToken.token.access_token,
       refreshToken: newToken.token.refresh_token,
-      expiresIn: newToken.token.expires_in,
+      expiresIn: 180,
       createdAt: newToken.token.created_at
     })) as FreeeTokenWithCryptInfo
     this.tokenCache[userId] = token
