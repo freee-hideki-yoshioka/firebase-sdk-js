@@ -63,7 +63,7 @@ export class TokenManager {
     freeeToken: FreeeToken
   ): Promise<void> {
     const token = await this.encrypt(freeeToken)
-
+    console.log("TokenManager_save")
     // Save freee token to firestore
     await this.admin
       .firestore()
