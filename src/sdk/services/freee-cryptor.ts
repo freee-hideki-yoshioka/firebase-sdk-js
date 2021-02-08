@@ -105,7 +105,10 @@ class FreeeCryptor {
   }
 
   private async getKey(keyFileName: string) {
+    console.log({keyFileName: keyFileName})
+    console.log({keyCache: this.keyCache[keyFileName]})
     if (this.keyCache[keyFileName]) {
+      console.log("1------------uuuuuuu")
       return this.keyCache[keyFileName]
     }
 
