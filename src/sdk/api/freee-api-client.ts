@@ -21,6 +21,7 @@ export class FreeeAPIClient {
     userId: string
   ): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
+      console.log({accessToken:accessToken})
       const headers = {
         Authorization: `Bearer ${accessToken}`,
         'X-Api-Version': '2020-06-15',
@@ -38,7 +39,7 @@ export class FreeeAPIClient {
    */
   post<T = any>(url: string, data: ParamJSON, userId: string): AxiosPromise<T> {
     return this.tokenManager.get(userId).then(accessToken => {
-
+      console.log({post_accessToken:accessToken})
       let sendData = data
       let sendHeaders: { [key: string]: any }  = {}
       let sendContentType = 'application/json'
