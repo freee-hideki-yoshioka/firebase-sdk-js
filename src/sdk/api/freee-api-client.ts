@@ -48,7 +48,7 @@ export class FreeeAPIClient {
       if (isMultipartRequest) {
         const formData = new FormData()
         Object.keys(data).forEach(key => {
-          formData.append(key, data[key])
+          formData.append(key, data[key], { filename: 'file.png', contentType: 'image/png' })
         })
         sendData = formData
         sendHeaders = formData.getHeaders()
@@ -58,7 +58,6 @@ export class FreeeAPIClient {
       sendHeaders['Authorization'] = `Bearer ${accessToken}`
       sendHeaders['X-Api-Version'] = '2020-06-15'
       sendHeaders['Content-Type'] = sendContentType
-
       return this.axios.post(url, sendData, {
         headers: sendHeaders
       })
